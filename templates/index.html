@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PG Management System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mb-4">PG Management System</h1>
+        <form action="/search" method="POST" class="mb-4">
+            <div class="input-group">
+                <input type="text" name="id_number" class="form-control" placeholder="Search by ID">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </form>
+        <form action="/add" method="POST" class="mb-4">
+            <div class="mb-3">
+                <input type="text" name="name" class="form-control" placeholder="Name">
+            </div>
+            <div class="mb-3">
+                <input type="text" name="id_number" class="form-control" placeholder="ID">
+            </div>
+            <div class="mb-3">
+                <input type="number" name="age" class="form-control" placeholder="Age">
+            </div>
+            <div class="mb-3">
+                <input type="email" name="email" class="form-control" placeholder="Email">
+            </div>
+            <div class="mb-3">
+                <input type="text" name="address" class="form-control" placeholder="Address">
+            </div>
+            <div class="mb-3">
+                <input type="text" name="phone_number" class="form-control" placeholder="Phone Number">
+            </div>
+            <button type="submit" class="btn btn-primary">Add Tenant</button>
+        </form>
+
+        <h2>All Tenants</h2>
+        <ul class="list-group">
+            {% for tenant in tenants %}
+                <li class="list-group-item">{{ tenant.name }} - {{ tenant.id }} - {{ tenant.age }} - {{ tenant.email }} - {{ tenant.address }} - {{ tenant.phone_number }}
+                    <a href="/update/{{ tenant.id }}" class="btn btn-sm btn-outline-secondary">Update</a>
+                    <a href="/delete/{{ tenant.id }}" class="btn btn-sm btn-outline-danger">Delete</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
